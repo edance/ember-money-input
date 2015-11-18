@@ -1,0 +1,1 @@
+export { default } from 'ember-money-input/components/money-input';
