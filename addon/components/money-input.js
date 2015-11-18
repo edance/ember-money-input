@@ -3,6 +3,9 @@ import layout from '../templates/components/money-input';
 
 export default Ember.TextField.extend({
   layout: layout,
+  didInsertElement() {
+    this.amountDidChange();
+  },
   keyPress(e) {
     var code = e.keyCode, str = this.get("value") || "";
 
@@ -28,7 +31,7 @@ export default Ember.TextField.extend({
     if (amount === value.replace(/[^\d\.]/g, "")) {
       return;
     }
-    this.set("value", amount)
+    this.set("value", amount);
   }),
   valueDidChange: Ember.observer("value", function() {
     var amount, value;
