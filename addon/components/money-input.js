@@ -7,7 +7,12 @@ export default Ember.TextField.extend({
     this.amountDidChange();
   },
   keyPress(e) {
-    var code = e.keyCode, str = this.get("value") || "";
+    var code = e.which, str = this.get("value") || "";
+
+    // Backspace for firefox
+    if (code === 8) {
+      return;
+    }
 
     str += String.fromCharCode(code);
     if (!str.match(/^[\$\,\d\.]*$/)) {
